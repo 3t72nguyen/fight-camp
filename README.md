@@ -19,8 +19,11 @@ The app has to be served over HTTPS once so Safari can install it. GitHub Pages 
 3. Open it once while online so the fonts and files are saved. After that it works offline.
 
 ## Notes
+- Tap the pencil beside any exercise in the Session list to set its own reps (1 to 100) or seconds (5 to 300). Edits are saved on the phone, and Reset edits puts the plan back.
 - Settings (sets, rest, plank time, pace, voice) are saved on the phone. The home-screen app keeps its own copy, separate from Safari.
-- Voice uses the phone's built-in speech and starts after your first tap. Keep the ring/silent switch off silent and turn the volume up.
+- The Sound button turns the coach voice and the rest-time tick on or off. The tick goes quiet while the coach speaks and comes back afterwards.
+- The coach uses the best English voice on the phone. For a more natural sound, download an Enhanced voice in Settings > Accessibility > Spoken Content > Voices > English (Australia or UK).
+- Sound starts after your first tap. Keep the ring/silent switch off silent and turn the volume up.
 - The screen stays awake during a workout on iOS 16.4 and later.
-- To publish an update, replace the files in the repo and raise `VERSION` in `sw.js` (for example `fight-camp-v2`).
+- To publish an update, replace the files in the repo and raise `VERSION` in `sw.js` (for example `fight-camp-v5`).
 - Any other static host with HTTPS works too (Netlify Drop, Cloudflare Pages).

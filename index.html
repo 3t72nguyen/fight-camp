@@ -7,13 +7,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Fight Camp">
+<meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#0b0c10">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" href="icons/icon-192.png">
-<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="icons/splash-1284x2778.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="splash-1284x2778.png">
 <style>
-html{color-scheme:dark;background:#0b0c10;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+html{color-scheme:dark;background:#0b0c10;-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:manipulation;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
 body{margin:0}
 [hidden]{display:none!important}
 </style>
@@ -134,7 +135,7 @@ h1,h2,p{margin:0}
   box-shadow:inset 0 3px 10px rgba(0,0,0,.85),0 1px 0 rgba(255,255,255,.08)}
 .wscroll{height:100%;overflow-y:auto;padding-block:var(--it);scroll-snap-type:y mandatory;scrollbar-width:none;overscroll-behavior:contain;outline-offset:-3px;touch-action:pan-y}
 .wscroll::-webkit-scrollbar{display:none}
-.wi{height:var(--it);display:grid;place-items:center;scroll-snap-align:center;font:300 32px/1 var(--f-display);color:var(--fg);cursor:pointer;will-change:transform}
+.wi{height:var(--it);display:grid;place-items:center;scroll-snap-align:center;font:300 32px/1 var(--f-display);color:var(--fg);cursor:pointer}
 .wi.txt{font-size:22px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
 .wi.sel{color:var(--acc)}
 .wband{position:absolute;left:6px;right:6px;top:var(--it);height:var(--it);border-top:2px solid var(--acc);border-bottom:2px solid var(--acc);border-radius:10px;pointer-events:none;background:rgba(255,255,255,.05);z-index:1}
@@ -720,14 +721,17 @@ function Wheel(root,labels,start,aria,onChange){
   for(var c=0;c<COPIES;c++){for(var i=0;i<N;i++){h+='<div class="wi'+(isNaN(+labels[i])?' txt':'')+'" data-a="'+(c*N+i)+'">'+labels[i]+'</div>'}}
   sc.innerHTML=h;
   var els=sc.children;
+  var pLo=-1,pHi=-1;
   function paint(){
-    var st=sc.scrollTop,c0=Math.round(st/ITEM);
-    for(var i=Math.max(0,c0-3);i<=Math.min(els.length-1,c0+3);i++){
+    var st=sc.scrollTop,c0=Math.round(st/ITEM),lo=Math.max(0,c0-3),hi=Math.min(els.length-1,c0+3),i;
+    if(pLo>=0){for(i=pLo;i<=pHi;i++){if(i<lo||i>hi){els[i].style.transform='';els[i].style.opacity='';els[i].classList.remove('sel')}}}
+    for(i=lo;i<=hi;i++){
       var o=(i*ITEM-st)/ITEM,a=Math.min(Math.abs(o),2.4);
       els[i].style.transform='perspective(280px) rotateX('+Math.max(-70,Math.min(70,-o*32)).toFixed(1)+'deg) scale('+(1-a*0.1).toFixed(3)+')';
       els[i].style.opacity=Math.max(0.15,1-a*0.38).toFixed(2);
       els[i].classList.toggle('sel',a<0.5);
     }
+    pLo=lo;pHi=hi;
   }
   function aria(){
     sc.setAttribute('aria-valuemin','0');sc.setAttribute('aria-valuemax',String(N-1));

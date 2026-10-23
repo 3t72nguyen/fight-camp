@@ -1,6 +1,6 @@
-/* Fight Camp service worker: app works offline after the first load. */
-const VERSION = 'fight-camp-v6';
-const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
+/* Fight Camp service worker: the app works offline after the first load. */
+const VERSION = 'fight-camp-v7';
+const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

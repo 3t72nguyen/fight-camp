@@ -25,5 +25,5 @@ The app has to be served over HTTPS once so Safari can install it. GitHub Pages 
 - The coach uses the best English voice on the phone. For a more natural sound, download an Enhanced voice in Settings > Accessibility > Spoken Content > Voices > English (Australia or UK).
 - Sound starts after your first tap. Keep the ring/silent switch off silent and turn the volume up.
 - The screen stays awake during a workout on iOS 16.4 and later.
-- To publish an update, replace the files in the repo and raise `VERSION` in `sw.js` (for example `fight-camp-v5`).
+- To publish an update, replace the files in the repo and raise `VERSION` in `sw.js` (for example `fight-camp-v7`).
 - Any other static host with HTTPS works too (Netlify Drop, Cloudflare Pages).
